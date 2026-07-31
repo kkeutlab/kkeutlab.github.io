@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/</loc>
+    <loc>https://kkeutlab.github.io/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/about.html</loc>
+    <loc>https://kkeutlab.github.io/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/guide.html</loc>
+    <loc>https://kkeutlab.github.io/guide.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/faq.html</loc>
+    <loc>https://kkeutlab.github.io/faq.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/blog.html</loc>
+    <loc>https://kkeutlab.github.io/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/blog-01.html</loc>
+    <loc>https://kkeutlab.github.io/blog-01.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/blog-02.html</loc>
+    <loc>https://kkeutlab.github.io/blog-02.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/blog-03.html</loc>
+    <loc>https://kkeutlab.github.io/blog-03.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://kkeutlab.github.io/robl_hanbang/privacy.html</loc>
+    <loc>https://kkeutlab.github.io/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
