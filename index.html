@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>한방단어 사전 — 로블록스 한국 끝말잇기 필살기 단어</title>
+<title>로블록스 끝말잇기 한방단어 사전 — 필살기 단어 모음</title>
+<meta name="description" content="로블록스 한국 끝말잇기 한방단어를 한눈에 모았어요. 실제 게임에서 검증된 필살기 단어와 위기단어 대응법까지, 초등학생도 쉽게 배우는 무료 사전이에요.">
+<meta property="og:title" content="로블록스 끝말잇기 한방단어 사전">
+<meta property="og:description" content="로블록스 한국 끝말잇기 한방단어를 한눈에! 검증된 필살기 단어와 위기단어 대응법을 무료로 확인하세요.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kkeutlab.github.io/robl_hanbang/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="로블록스 끝말잇기 한방단어 사전">
+<meta name="twitter:description" content="로블록스 한국 끝말잇기 한방단어를 한눈에! 검증된 필살기 단어와 위기단어 대응법을 무료로 확인하세요.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -77,6 +85,14 @@
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   header.hero p{color:var(--dim); font-size:15px; max-width:520px; margin:0 auto;}
+  .share-btn{
+    margin-top:20px; background:linear-gradient(90deg, var(--cyan), var(--pink));
+    color:#0a0a1f; border:none; padding:12px 26px; border-radius:999px;
+    font-family:'Nanum Gothic',sans-serif; font-weight:800; font-size:15px; cursor:pointer;
+    box-shadow:0 8px 24px -8px rgba(94,234,212,0.5);
+  }
+  .share-btn:hover{filter:brightness(1.08);}
+  .share-btn:active{transform:scale(0.97);}
 
   /* ---------- search console ---------- */
   .console{
@@ -271,6 +287,7 @@
   <span class="eyebrow">끝말잇기 필살기 학습소</span>
   <h1>로블록스 한국끝말잇기<br>필살기 단어를 익혀라</h1>
   <p>로블록스 친구들 사이에서 유행 중인 한국 끝말잇기.<br><b style="color:var(--cyan)">한방단어</b>로 상대를 끝내고, <b style="color:var(--pink)">위기단어대응</b>으로 나를 지키세요.</p>
+  <button type="button" class="share-btn" onclick="shareSite()">🔗 친구에게 공유하기</button>
 </header>
 
 <!-- =================== 1. 한방단어 =================== -->
@@ -462,6 +479,26 @@ let activeHbSyl = null;
 function goTo(id){
   const el = document.getElementById(id);
   if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function shareSite(){
+  const shareData = {
+    title: '로블록스 끝말잇기 한방단어 사전',
+    text: '로블록스 끝말잇기 한방단어 모음! 이거 알면 무조건 이겨 🎯',
+    url: 'https://kkeutlab.github.io/robl_hanbang/'
+  };
+  if(navigator.share){
+    navigator.share(shareData).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(shareData.url).then(()=>{
+      const btn = document.querySelector('.share-btn');
+      const original = btn.textContent;
+      btn.textContent = '✅ 링크가 복사됐어요!';
+      setTimeout(()=>{ btn.textContent = original; }, 2000);
+    }).catch(()=>{
+      alert('링크: ' + shareData.url);
+    });
+  }
 }
 
 function lastChar(w){ return w.slice(-1); }
