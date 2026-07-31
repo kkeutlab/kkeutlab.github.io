@@ -263,7 +263,7 @@
   <div class="tabs">
     <button type="button" onclick="goTo('hanbang')">🎯 한방단어</button>
     <button type="button" onclick="goTo('wigi')">🛡️ 위기단어대응</button>
-    <button type="button" onclick="goTo('ambiguous')">❓ 로블록스에서 될까요?</button>
+    <button type="button" onclick="goTo('danger')">🚫 이 글자로 끝내면 안 돼요</button>
   </div>
 </nav>
 
@@ -309,15 +309,6 @@
       <h3>상대 실력부터 파악하기</h3>
       <p>초보 상대에게는 흔한 단어로도 충분히 이길 수 있어요. 필살기는 진짜 고수와 붙었을 때를 위해 아껴두세요.</p>
     </div>
-    <div class="tip-card">
-      <div class="num">STRATEGY 03</div>
-      <h3>규칙을 미리 정하기</h3>
-      <p>방마다 규칙이 달라요. 시작 전에 "한방단어 허용?", "고유명사 인정?" 같은 걸 먼저 정하면 다툼이 없어집니다.</p>
-    </div>
-  </div>
-
-  <div class="callout" style="margin-top:24px;">
-    <b>알아두면 좋은 사실.</b> 화학 원소 이름 중 '륨·슘·뮴·튬·듐·븀·퓸'으로 끝나는 단어는 사실상 모든 규칙에서 필살기예요. 이 뒷글자로 시작하는 단어가 우리말에 거의 없기 때문이죠. (단, '늄'은 게임에 따라 예외가 있어요 — 자세한 건 아래 '로블록스에서 될까요?' 메뉴 참고!)
   </div>
 </section>
 
@@ -365,29 +356,30 @@
   </div>
 </section>
 
-<!-- =================== 3. 로블록스에서 될까요? =================== -->
-<section id="ambiguous">
+<!-- =================== 3. 이 글자로 끝내면 안 돼요 =================== -->
+<section id="danger">
   <div class="menu-head">
     <span class="menu-num">MENU 03</span>
-    <h2>❓ 로블록스에서 될까요?</h2>
+    <h2>🚫 이 글자로 끝내면 안 돼요</h2>
   </div>
-  <p class="section-sub">로블록스 게임의 내부 사전을 직접 조회할 수는 없지만, 커뮤니티가 이 게임 전용으로 정리한 문서(끝말잇기 엔진의 '로블록스 한국 끝말잇기' 규칙)를 찾아서 반영했어요. 이 게임 사전은 방언·옛말까지 받아줄 정도로 넓다는 게 확인됐고, 그래서 오히려 위험해지는 단어들이 있습니다.</p>
+  <p class="section-sub">내가 말한 단어가 이 글자들로 끝나면 위험해요. 상대가 바로 한방단어로 마무리할 수 있거든요. 아래 글자를 눌러서 어떤 한방단어가 기다리고 있는지 확인해보세요.</p>
 
-  <div class="ambi-notice">
-    <b>⚠️ 왜 확실하지 않나요?</b><br>
-    커뮤니티 문서조차 "여기 적힌 단어가 전부 인게임에서 되는 건 아닐 수 있다"고 밝히고 있어요. 그래도 실제 콤보(예: 마그네슘→슘페터→터븀, 값새→새벽녘)로 직접 언급된 단어는 도감에서 <span class="conf-badge verified">✅ 로블록스 확인</span> 배지로 표시했고, 아래는 그 반대로 "게임 사전이 넓어서 오히려 안 통할 수 있는" 단어들을 모았습니다.
+  <div class="syl-wrap" id="dangerSylWrap"></div>
+
+  <div id="dangerResult" class="result info show" style="margin-top:16px;">
+    <span class="tag">역공 확인</span>
+    <div style="margin-top:6px; color:var(--dim); font-size:13px;">👆 위 글자를 눌러서 어떤 한방단어가 기다리고 있는지 확인해보세요.</div>
   </div>
-
-  <div class="ambi-grid" id="ambiGrid"></div>
 </section>
 
 <footer>
-  이 사전은 재미와 어휘 학습을 위한 자료이며, 지역이나 방 규칙에 따라 인정 여부가 다를 수 있어요. 친구와 즐겁게, 매너 있게 플레이하세요 🎮
+  이 사전은 재미와 어휘 학습을 위한 자료이며, 지역이나 로블록스 규칙 변경에 따라 인정 여부가 다를 수 있어요. 친구와 즐겁게, 매너 있게 플레이하세요 🎮
   <br><br>
-  ⚠️ 로블록스 한국 끝말잇기 게임에서 실제로 가능/불가능 여부를 확인해 반영했습니다.<br>
-  문의 및 수정 요청은 <a href="mailto:mmm@gmail.com">mmm@gmail.com</a> 으로 연락해주세요.
+  ⚠️ 로블록스 한국 끝말잇기 게임에서 실제로 가능/불가능 여부를 확인해 반영했지만 업데이트 환경에 따라 달라질 수 있습니다. 끝말잇기 고수 분들의 제보는 언제나 환영입니다. 문의 및 수정 요청은 <a href="mailto:dongdong220318@gmail.com">dongdong220318@gmail.com</a> 로 메일주세요.
   <br><br>
   <a href="about.html">사이트 소개</a> · <a href="guide.html">이용가이드</a> · <a href="faq.html">FAQ</a> · <a href="blog.html">끝말잇기 꿀팁</a> · <a href="privacy.html">개인정보처리방침</a>
+  <br><br>
+  <span style="color:var(--dim); font-size:11px;">공동제작 호요&amp;나미</span>
 </footer>
 
 <script>
@@ -404,8 +396,8 @@ const FINISHERS = [
   {w:"스칸듐", cat:"원소", conf:"verified", tip:"로블록스에서 확인 완료. '듐' 필살기예요."},
   {w:"팔라듐", cat:"원소", conf:"verified", tip:"로블록스에서 확인 완료. '듐' 필살기예요."},
   {w:"이터븀", cat:"원소", conf:"verified", tip:"로블록스에서 실제로 확인된 필살기예요."},
-  {w:"네오디뮴", cat:"원소", conf:"likely", tip:"로블록스 제보로 새로 추가됐어요. '뮴' 계열 필살기예요."},
-  {w:"다이뮴", cat:"원소", conf:"verified", tip:"로블록스에서 실제로 확인된 필살기예요. '뮴' 계열이에요."},
+  {w:"네오디뮴", cat:"원소", conf:"verified", tip:"로블록스에서 확인 완료. '뮴' 계열 필살기예요."},
+  {w:"다이디뮴", cat:"원소", conf:"verified", tip:"로블록스에서 확인 완료. '뮴' 계열이에요."},
   {w:"치읓", cat:"자음이름", conf:"likely", tip:"ㅊ의 이름. '읓' 시작 단어가 없어요."},
   {w:"키읔", cat:"자음이름", conf:"likely", tip:"ㅋ의 이름. '읔' 시작 단어가 없어요."},
   {w:"티읕", cat:"자음이름", conf:"likely", tip:"ㅌ의 이름. '읕' 시작 단어가 없어요."},
@@ -413,17 +405,19 @@ const FINISHERS = [
   {w:"히읗", cat:"자음이름", conf:"likely", tip:"ㅎ의 이름. '읗' 시작 단어가 없는, 최고의 마무리예요."},
   {w:"새벽녘", cat:"시간", conf:"verified", tip:"로블록스 실전 콤보(값새→새벽녘, 듭새→새벽녘)에 여러 번 등장하는, 검증도가 높은 필살기예요. '녘노을', '녘새발', '녘마차' 모두 안 먹혀요."},
   {w:"저녁녘", cat:"시간", conf:"verified", tip:"로블록스에서 확인 완료. '녘' 필살기예요."},
+  {w:"울녘", cat:"시간", conf:"verified", tip:"로블록스에서 확인 완료. '녘노을', '녘새발', '녘마차' 모두 안 먹혀요."},
   {w:"부엌", cat:"일상", conf:"likely", tip:"'엌'으로 시작하는 단어가 없어요."},
   {w:"오지랖", cat:"일상", conf:"likely", tip:"'랖'으로 시작하는 단어가 없어요."},
   {w:"암탉", cat:"일상", conf:"likely", tip:"'탉'으로 시작하는 단어가 없어요."},
   {w:"수탉", cat:"일상", conf:"likely", tip:"'탉' 필살기예요."},
   {w:"아픔", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. '픔퍼노우'도 안 먹혀요."},
   {w:"기쁨", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. '픔' 필살기예요."},
+  {w:"나쁨", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. '쁨' 계열 필살기예요."},
   {w:"여덟", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. 유치원생도 아는 단어라 방심한 상대에게 잘 통해요."},
-  {w:"차퀘", cat:"일상", conf:"verified", tip:"로블록스 제보로 새로 추가됐어요. '퀘'로 시작하는 단어가 없어요."},
-  {w:"다래짬", cat:"일상", conf:"verified", tip:"로블록스 제보로 새로 추가됐어요. '짬' 계열 필살기예요."},
-  {w:"사과짬", cat:"일상", conf:"verified", tip:"로블록스 제보로 새로 추가됐어요. '짬' 계열 필살기예요."},
-  {w:"과실짬", cat:"일상", conf:"verified", tip:"로블록스 제보로 새로 추가됐어요. '짬' 계열 필살기예요."},
+  {w:"차풰", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. '풰'로 시작하는 단어가 없어요."},
+  {w:"다래쨤", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. '쨤' 계열 필살기예요."},
+  {w:"사과쨤", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. '쨤' 계열 필살기예요."},
+  {w:"과실쨤", cat:"일상", conf:"verified", tip:"로블록스에서 확인 완료. '쨤' 계열 필살기예요."},
 ];
 
 const AMBIGUOUS = [
@@ -452,11 +446,12 @@ const WIGI = [
   {syl:"릎", word:"늪기슭 / 늪가", note:"두음법칙으로 '릎'을 '늪'으로 바꿔서 대응할 수 있어요."},
   {syl:"늄", word:"윰라대왕 / 윰차", note:"로블록스 사전이 방언까지 넓게 인정해서 받아쳐질 수 있어요. 우라늄·플루토늄이 위험한 이유예요. 실제로 적용해서 확인했어요."},
   {syl:"륨", word:"윰라대왕 / 윰차", note:"'늄'과 같은 대응 단어가 '륨'에도 그대로 적용돼요. 실제로 적용해서 확인했어요 — 나트륨·헬륨·갈륨이 위험한 이유예요."},
-  {syl:"뻠", word:"발뻠", note:"'뻠수'류 공격에 대응할 수 있는 것으로 확인됐어요."},
+  {syl:"뺌", word:"발뺌", note:"'뺌손', '뺌수'류 공격에 대응할 수 있는 것으로 확인됐어요."},
   {syl:"듸", word:"듸예", note:"'왕듸' 공격이 들어왔을 때 '듸예'로 받아칠 수 있어요."},
   {syl:"윕", word:"윕쌀", note:"'역스윕' 공격이 들어왔을 때 '윕쌀'로 대응할 수 있어요."},
-  {syl:"럿", word:"엇비슷", note:"'자일로바일럿' 공격이 들어왔을 때 대응할 수 있어요."},
-  {syl:"숫", word:"숫다", note:"'숫다'로 대응할 수 있지만, 상대가 '다래짬'이나 '다이뮴' 같은 한방단어로 끝낼 수도 있어요."},
+  {syl:"럿", word:"엇비슷", note:"'자일로파일럿' 공격이 들어왔을 때 대응할 수 있어요."},
+  {syl:"슷", word:"슷다", note:"'슷다'로 대응할 수 있지만, 상대가 '다래쨤'이나 '다이디뮴' 같은 한방단어로 끝낼 수도 있어요."},
+  {syl:"슨", word:"슨거 / 슨대 / 슨도", note:"'허드슨' 또는 '슨'으로 끝나는 단어 공격을 막아낼 수 있어요."},
 ];
 
 let activeHbSyl = null;
@@ -490,12 +485,25 @@ function renderGrid(){
   }).join('') || `<p style="color:var(--dim)">해당하는 단어가 없어요.</p>`;
 }
 
-function renderAmbiguous(){
-  const el = document.getElementById('ambiGrid');
-  el.innerHTML = AMBIGUOUS.map(a => `<div class="ambi-card">
-      <div class="w">${a.w} <span class="badge-q">확인필요</span></div>
-      <div class="reason">${a.reason}</div>
-    </div>`).join('');
+function firstChar(w){ return w.slice(0,1); }
+
+function renderDangerSyllables(){
+  const set = [...new Set(FINISHERS.map(f => firstChar(f.w)))].sort();
+  const el = document.getElementById('dangerSylWrap');
+  el.innerHTML = set.map(s => `<div class="syl" id="danger-syl-${s}" onclick="showDanger('${s}')">${s}</div>`).join('');
+}
+
+function showDanger(s){
+  document.querySelectorAll('#dangerSylWrap .syl').forEach(el => el.classList.remove('active'));
+  const chip = document.getElementById('danger-syl-' + s);
+  if(chip) chip.classList.add('active');
+
+  const hits = FINISHERS.filter(f => firstChar(f.w) === s);
+  const box = document.getElementById('dangerResult');
+  box.className = 'result show warn';
+  box.innerHTML = `<span class="tag">역공 위험!</span>
+    <div style="font-family:'Nanum Gothic',sans-serif; font-size:20px; margin-top:8px;">'${s}'(으)로 끝나면 상대가 이걸로 끝낼 수 있어요</div>
+    <div class="chips" style="margin-top:10px;">${hits.map(f=>`<span class="chip">${f.w}</span>`).join('')}</div>`;
 }
 
 function renderSyllables(){
@@ -538,7 +546,7 @@ function hbSelectSyllable(s){
 renderGrid();
 renderSyllables();
 renderHbSyllables();
-renderAmbiguous();
+renderDangerSyllables();
 </script>
 
 </body>
