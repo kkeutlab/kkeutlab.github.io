@@ -26,6 +26,21 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://kkeutlab.github.io/robl_hanbang/blog-01.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkeutlab.github.io/robl_hanbang/blog-02.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkeutlab.github.io/robl_hanbang/blog-03.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kkeutlab.github.io/robl_hanbang/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

@@ -245,6 +245,21 @@
   }
   .callout b{color:var(--text);}
 
+  .post-mini-list{display:flex; flex-direction:column; gap:10px;}
+  .post-mini{
+    display:block; background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:14px 18px; text-decoration:none; transition:border-color .15s;
+  }
+  .post-mini:hover{border-color:var(--pink);}
+  .post-mini .post-mini-date{font-family:'Space Mono',monospace; font-size:10px; color:var(--yellow);}
+  .post-mini h4{
+    font-family:'Nanum Gothic',sans-serif; font-weight:800; font-size:15px; color:var(--text);
+    margin:4px 0 0;
+  }
+  .post-mini-more{
+    display:inline-block; margin-top:12px; font-size:13px; color:var(--cyan); text-decoration:none;
+  }
+
   .ambi-notice{
     background:rgba(255,210,63,0.08); border:1px solid var(--yellow); border-radius:16px;
     padding:18px 20px; font-size:13px; color:var(--dim); line-height:1.7; margin-bottom:24px;
@@ -389,6 +404,12 @@
   </div>
 </section>
 
+<section id="latest-tips" style="padding-top:0;">
+  <h3 class="sub-h" style="margin-top:0;">📝 최신 꿀팁</h3>
+  <div class="post-mini-list" id="postMiniList"></div>
+  <a href="blog.html" class="post-mini-more">꿀팁 전체 보기 →</a>
+</section>
+
 <footer>
   이 사전은 재미와 어휘 학습을 위한 자료이며, 지역이나 로블록스 규칙 변경에 따라 인정 여부가 다를 수 있어요. 친구와 즐겁게, 매너 있게 플레이하세요 🎮
   <br><br>
@@ -472,6 +493,13 @@ const WIGI = [
   {syl:"럿", word:"엇비슷", note:"'자일로파일럿' 공격이 들어왔을 때 대응할 수 있어요."},
   {syl:"슷", word:"슷다", note:"'슷다'로 대응할 수 있지만, 상대가 '다래쨤'이나 '다이디뮴' 같은 한방단어로 끝낼 수도 있어요."},
   {syl:"슨", word:"슨거 / 슨대 / 슨도", note:"'허드슨' 또는 '슨'으로 끝나는 단어 공격을 막아낼 수 있어요."},
+];
+
+// 블로그 새 글이 생기면 여기에 항목을 추가하면 메인 페이지 '최신 꿀팁'에도 자동 반영돼요.
+const POSTS = [
+  {title:"끝말잇기, 제대로 알고 하면 안 진다", url:"blog-01.html", date:"2026.07.31"},
+  {title:"'듐'으로 끝나는 단어 총정리", url:"blog-02.html", date:"2026.07.31"},
+  {title:"'늄'으로 끝나는 단어, 진짜 한방일까?", url:"blog-03.html", date:"2026.07.31"},
 ];
 
 let activeHbSyl = null;
@@ -583,10 +611,21 @@ function hbSelectSyllable(s){
   if(hint) hint.textContent = `'${s}'(으)로 끝나는 필살기 단어예요 👇`;
 }
 
+function renderPosts(){
+  const el = document.getElementById('postMiniList');
+  if(!el) return;
+  const latest = POSTS.slice(-3).reverse();
+  el.innerHTML = latest.map(p => `<a class="post-mini" href="${p.url}">
+      <span class="post-mini-date">${p.date}</span>
+      <h4>${p.title}</h4>
+    </a>`).join('');
+}
+
 renderGrid();
 renderSyllables();
 renderHbSyllables();
 renderDangerSyllables();
+renderPosts();
 </script>
 
 </body>
