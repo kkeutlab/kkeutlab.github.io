@@ -272,6 +272,28 @@
     display:inline-block; margin-top:12px; font-size:13px; color:var(--cyan); text-decoration:none;
   }
 
+  .scenario-list{display:flex; flex-direction:column; gap:12px;}
+  .scenario-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px 20px;
+  }
+  .scenario-card .top-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
+  .scenario-card h3{
+    font-family:'Nanum Gothic',sans-serif; font-weight:800; font-size:16px; color:var(--text); margin:0;
+  }
+  .scenario-card .meta{font-family:'Space Mono',monospace; font-size:11px; color:var(--yellow); white-space:nowrap;}
+  .scenario-card .author{
+    display:inline-block; font-size:12px; color:var(--cyan); background:var(--panel-2);
+    border-radius:999px; padding:3px 10px; margin-bottom:8px;
+  }
+  .scenario-card p{font-size:14px; color:var(--dim); margin:0; line-height:1.6; white-space:pre-line;}
+  .scenario-loading, .scenario-empty{
+    text-align:center; color:var(--dim); font-size:14px; padding:20px; border:1px dashed var(--line); border-radius:14px;
+  }
+  .scenario-note{
+    margin-top:16px; background:rgba(255,210,63,0.08); border:1px solid var(--yellow); border-radius:14px;
+    padding:14px 18px; font-size:13px; color:var(--dim);
+  }
+
   .ambi-notice{
     background:rgba(255,210,63,0.08); border:1px solid var(--yellow); border-radius:16px;
     padding:18px 20px; font-size:13px; color:var(--dim); line-height:1.7; margin-bottom:24px;
@@ -307,6 +329,7 @@
     <button type="button" onclick="goTo('hanbang')">🎯 한방단어</button>
     <button type="button" onclick="goTo('wigi')">🛡️ 위기단어대응</button>
     <button type="button" onclick="goTo('danger')">🚫 이 글자로 끝내면 안 돼요</button>
+    <button type="button" onclick="goTo('scenario')">🏆 승리 시나리오</button>
   </div>
 </nav>
 
@@ -480,6 +503,23 @@
       이 글자들은 한방단어 목록의 첫 글자를 모은 거예요. 어떤 단어가 위험한지는 위쪽 '한방단어' 목록을 참고하세요.
     </p>
   </noscript>
+</section>
+
+<!-- =================== 4. 승리 시나리오 =================== -->
+<section id="scenario">
+  <div class="menu-head">
+    <span class="menu-num">MENU 04</span>
+    <h2>🏆 승리 시나리오</h2>
+  </div>
+  <p class="section-sub">다른 사람들은 실제로 어떻게 이겼을까요? 승리 시나리오를 함께 보면서 배워보세요.</p>
+
+  <div class="scenario-list" id="scenarioList">
+    <div class="scenario-loading">불러오는 중...</div>
+  </div>
+
+  <div class="scenario-note">
+    💡 나만의 승리 시나리오를 공유하고 싶다면, 아래 문의 메일로 보내주세요. 검토 후 올려드려요!
+  </div>
 </section>
 
 <section id="latest-tips" style="padding-top:0;">
@@ -698,10 +738,70 @@ function hbSelectSyllable(s){
   if(hint) hint.textContent = `'${s}'(으)로 끝나는 필살기 단어예요 👇`;
 }
 
+// 승리 시나리오: 구글 시트를 CSV로 게시한 주소를 읽어와서 카드로 보여줘요.
+const SCENARIO_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSRGm4-S_MuIQCpXBcM9x_AugxZbkHBarZywtfqgBqpWTk5uai6hZzMYut7z6pFL020YqeezQs7hQl4/pub?gid=168341961&single=true&output=csv';
+
+function parseCSV(text){
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for(let i=0; i<text.length; i++){
+    const c = text[i], next = text[i+1];
+    if(inQuotes){
+      if(c === '"' && next === '"'){ field += '"'; i++; }
+      else if(c === '"'){ inQuotes = false; }
+      else { field += c; }
+    } else {
+      if(c === '"'){ inQuotes = true; }
+      else if(c === ','){ row.push(field); field = ''; }
+      else if(c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+      else if(c === '\r'){ /* skip */ }
+      else { field += c; }
+    }
+  }
+  if(field.length || row.length){ row.push(field); rows.push(row); }
+  return rows.filter(r => r.some(v => v && v.trim() !== ''));
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function renderScenarios(){
+  const el = document.getElementById('scenarioList');
+  if(!el) return;
+  try{
+    const res = await fetch(SCENARIO_CSV_URL, {cache: 'no-store'});
+    if(!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    const rows = parseCSV(text);
+    if(rows.length <= 1){
+      el.innerHTML = `<div class="scenario-empty">아직 등록된 시나리오가 없어요. 첫 번째 승리 시나리오를 남겨보세요!</div>`;
+      return;
+    }
+    const items = rows.slice(1).map(r => ({
+      title: r[0] || '', author: r[1] || '익명', content: r[2] || '', date: r[3] || ''
+    })).reverse();
+
+    el.innerHTML = items.map(it => `
+      <div class="scenario-card">
+        <div class="top-row">
+          <h3>${escapeHtml(it.title)}</h3>
+          <span class="meta">${escapeHtml(it.date)}</span>
+        </div>
+        <span class="author">✍️ ${escapeHtml(it.author)}</span>
+        <p>${escapeHtml(it.content)}</p>
+      </div>
+    `).join('');
+  } catch(e){
+    el.innerHTML = `<div class="scenario-empty">시나리오를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>`;
+  }
+}
+
 renderGrid();
 renderSyllables();
 renderHbSyllables();
 renderDangerSyllables();
+renderScenarios();
 </script>
 
 </body>
