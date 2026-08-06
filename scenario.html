@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJYPJPH03R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LJYPJPH03R');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1888574100888197"
+     crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>승리 시나리오 모음 — 로블록스 끝말잇기 한방단어 사전</title>
+<meta name="description" content="로블록스 끝말잇기 유저들이 직접 공유한 승리 시나리오 모음이에요. 실제 승부에서 어떻게 이겼는지 함께 보면서 배워보세요.">
+<meta property="og:title" content="승리 시나리오 모음 — 로블록스 끝말잇기 한방단어 사전">
+<meta property="og:description" content="로블록스 끝말잇기 유저들이 직접 공유한 승리 시나리오 모음이에요.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kkeutlab.github.io/scenario.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .scenario-list{display:flex; flex-direction:column; gap:12px; margin-top:24px;}
+  .scenario-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px 20px;
+  }
+  .scenario-card .top-row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; flex-wrap:wrap;}
+  .scenario-card h3{
+    font-family:'Nanum Gothic',sans-serif; font-weight:800; font-size:16px; color:var(--text); margin:0;
+  }
+  .scenario-card .meta{font-family:'Space Mono',monospace; font-size:11px; color:var(--yellow); white-space:nowrap;}
+  .scenario-card p{font-size:14px; color:var(--dim); margin:0; line-height:1.6; white-space:pre-line;}
+  .scenario-loading, .scenario-empty{
+    text-align:center; color:var(--dim); font-size:14px; padding:20px; border:1px dashed var(--line); border-radius:14px;
+  }
+  .scenario-note{
+    margin-top:20px; background:rgba(255,210,63,0.08); border:1px solid var(--yellow); border-radius:14px;
+    padding:14px 18px; font-size:13px; color:var(--dim);
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="logo" href="index.html">한방단어 사전 <span class="badge">ROBLOX</span></a>
+  <div class="links">
+    <a href="index.html">사전</a>
+    <a href="about.html">소개</a>
+    <a href="guide.html">이용가이드</a>
+    <a href="faq.html">FAQ</a>
+    <a href="blog.html">꿀팁</a>
+    <a href="scenario.html" class="active">시나리오</a>
+  </div>
+</nav>
+
+<main class="page">
+  <a href="index.html" class="back-home-btn">🏠 홈으로 돌아가기</a>
+  <div class="tag-row"><span class="tag-pill">COMMUNITY</span></div>
+  <h1>🏆 승리 시나리오 모음</h1>
+  <p class="lead">다른 사람들은 실제로 어떻게 이겼을까요? 승리 시나리오를 함께 보면서 배워보세요. 계속 새로운 시나리오가 추가돼요.</p>
+
+  <div class="scenario-list" id="scenarioList">
+    <div class="scenario-loading">불러오는 중...</div>
+  </div>
+
+  <div class="scenario-note">
+    💡 나만의 승리 시나리오를 공유하고 싶다면, 아래 문의 메일로 보내주세요. 검토 후 올려드려요!
+  </div>
+</main>
+
+<footer class="site-footer">
+  ⓒ 한방단어 사전 · <a href="privacy.html">개인정보처리방침</a> · 문의: <a href="mailto:dongdong220318@gmail.com">dongdong220318@gmail.com</a>
+  <br><br>
+  <span style="font-size:11px;">공동제작 호요&amp;나미</span>
+</footer>
+
+<script>
+const SCENARIO_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSRGm4-S_MuIQCpXBcM9x_AugxZbkHBarZywtfqgBqpWTk5uai6hZzMYut7z6pFL020YqeezQs7hQl4/pub?gid=168341961&single=true&output=csv';
+
+function parseCSV(text){
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for(let i=0; i<text.length; i++){
+    const c = text[i], next = text[i+1];
+    if(inQuotes){
+      if(c === '"' && next === '"'){ field += '"'; i++; }
+      else if(c === '"'){ inQuotes = false; }
+      else { field += c; }
+    } else {
+      if(c === '"'){ inQuotes = true; }
+      else if(c === ','){ row.push(field); field = ''; }
+      else if(c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+      else if(c === '\r'){ /* skip */ }
+      else { field += c; }
+    }
+  }
+  if(field.length || row.length){ row.push(field); rows.push(row); }
+  return rows.filter(r => r.some(v => v && v.trim() !== ''));
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function renderScenarios(){
+  const el = document.getElementById('scenarioList');
+  if(!el) return;
+  try{
+    const res = await fetch(SCENARIO_CSV_URL, {cache: 'no-store'});
+    if(!res.ok) throw new Error('fetch failed');
+    const text = await res.text();
+    const rows = parseCSV(text);
+    if(rows.length <= 1){
+      el.innerHTML = `<div class="scenario-empty">아직 등록된 시나리오가 없어요. 첫 번째 승리 시나리오를 남겨보세요!</div>`;
+      return;
+    }
+    const items = rows.slice(1).map(r => ({
+      title: r[0] || '', author: r[1] || '익명', content: r[2] || '', date: r[3] || ''
+    })).reverse();
+
+    el.innerHTML = items.map(it => `
+      <div class="scenario-card">
+        <div class="top-row">
+          <h3>${escapeHtml(it.title)}</h3>
+          <span class="meta">${escapeHtml(it.date)}</span>
+        </div>
+        <p>${escapeHtml(it.content)}</p>
+      </div>
+    `).join('');
+  } catch(e){
+    el.innerHTML = `<div class="scenario-empty">시나리오를 불러오지 못했어요. 잠시 후 다시 시도해주세요.</div>`;
+  }
+}
+
+renderScenarios();
+</script>
+
+</body>
+</html>
