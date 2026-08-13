@@ -99,6 +99,11 @@ main.page li{margin-bottom:6px;}
 }
 .back-home-btn:hover{filter:brightness(1.08);}
 
+/* compact variant used inside the sticky nav bar, placed before the page links */
+nav.site-nav .back-home-btn{
+  margin-bottom:0; font-size:12px; padding:6px 12px; flex-shrink:0;
+}
+
 .cta-box{
   background:linear-gradient(135deg, rgba(94,234,212,0.08), rgba(255,95,162,0.08));
   border:1px solid var(--line); border-radius:16px; padding:22px; margin-top:36px; text-align:center;

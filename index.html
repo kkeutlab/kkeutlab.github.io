@@ -21,9 +21,11 @@
 <meta property="og:description" content="로블록스 한국 끝말잇기 한방단어를 한눈에! 검증된 필살기 단어와 위기단어 대응법을 무료로 확인하세요.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kkeutlab.github.io/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://kkeutlab.github.io/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="로블록스 끝말잇기 한방단어 사전">
 <meta name="twitter:description" content="로블록스 한국 끝말잇기 한방단어를 한눈에! 검증된 필살기 단어와 위기단어 대응법을 무료로 확인하세요.">
+<meta name="twitter:image" content="https://kkeutlab.github.io/images/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -85,19 +87,14 @@
 
   @media (max-width:640px){
     nav .tabs{
-      display:grid; grid-template-columns:repeat(6, 1fr); gap:6px; width:100%; overflow-x:visible;
+      display:flex; flex-wrap:nowrap; gap:6px; width:100%;
+      overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
     }
+    nav .tabs::-webkit-scrollbar{display:none;}
     nav .tabs button, nav .tabs a{
-      white-space:normal; text-align:center; font-size:12px; padding:8px 4px; line-height:1.3;
-      background:var(--panel); border:1px solid var(--line);
+      white-space:nowrap; text-align:center; font-size:12.5px; padding:8px 12px; line-height:1.3;
+      background:var(--panel); border:1px solid var(--line); flex-shrink:0;
     }
-    /* 1줄: 핵심 도구 2개 (각 6칸 중 3칸씩) */
-    nav .tabs > :nth-child(1),
-    nav .tabs > :nth-child(2){ grid-column:span 3; }
-    /* 2줄: 보조 메뉴 3개 (각 6칸 중 2칸씩) */
-    nav .tabs > :nth-child(3),
-    nav .tabs > :nth-child(4),
-    nav .tabs > :nth-child(5){ grid-column:span 2; }
   }
 
   /* ---------- hero ---------- */
@@ -342,8 +339,8 @@
   <div class="tabs">
     <button type="button" onclick="goTo('hanbang')">🎯 한방단어</button>
     <button type="button" onclick="goTo('wigi')">🛡️ 위기단어대응</button>
-    <button type="button" onclick="goTo('danger')">🚫 이 글자로 끝내면 안 돼요</button>
-    <a href="scenario.html">🏆 승리 시나리오</a>
+    <button type="button" onclick="goTo('danger')">🚫 역공주의</button>
+    <a href="scenario.html">🏆 승리시나리오</a>
     <a href="blog.html">📝 꿀팁</a>
   </div>
 </nav>
