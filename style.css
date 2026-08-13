@@ -94,10 +94,10 @@ main.page li{margin-bottom:6px;}
 .back-home-btn{
   display:inline-flex; align-items:center; gap:6px;
   font-family:'Nanum Gothic',sans-serif; font-weight:800; font-size:13px;
-  color:var(--void); background:linear-gradient(90deg, var(--cyan), var(--pink));
+  color:var(--text); background:var(--panel-2); border:1px solid var(--pink);
   padding:8px 16px; border-radius:999px; text-decoration:none; margin-bottom:18px;
 }
-.back-home-btn:hover{filter:brightness(1.08);}
+.back-home-btn:hover{background:var(--panel); border-color:var(--cyan);}
 
 /* compact variant used inside the sticky nav bar, placed before the page links */
 nav.site-nav .back-home-btn{
